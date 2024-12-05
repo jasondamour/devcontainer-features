@@ -2,6 +2,7 @@
 set -e
 
 PANTS_VERSION=${VERSION:-"latest"}
+USERNAME="${USERNAME:-"${_REMOTE_USER:-"automatic"}"}"
 
 
 # Bring in ID, ID_LIKE, VERSION_ID, VERSION_CODENAME
@@ -90,10 +91,11 @@ echo "Installing dependencies..."
 check_packages ca-certificates
 check_packages curl
 
+
 curl --proto '=https' --tlsv1.2 -fsSL https://static.pantsbuild.org/setup/get-pants.sh | bash -s -- --bin-dir /usr/bin
 
 # If the version is "latest", use the guide to boostrap
 if [ "$PANTS_VERSION" = "latest" ]; then
-    echo Y | pants --version
+    su ${USERNAME} -c "echo Y | pants --version"
     rm pants.toml
 fi
