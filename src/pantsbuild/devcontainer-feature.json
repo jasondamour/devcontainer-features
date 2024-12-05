@@ -1,7 +1,7 @@
 {
     "name": "Pantsbuild",
     "id": "pantsbuild",
-    "version": "0.0.2",
+    "version": "0.0.3",
     "description": "Installs Pantsbuild wrapper, and optionally installs a default version",
     "options": {
         "version": {

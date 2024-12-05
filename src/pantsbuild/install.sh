@@ -95,7 +95,9 @@ check_packages curl
 curl --proto '=https' --tlsv1.2 -fsSL https://static.pantsbuild.org/setup/get-pants.sh | bash -s -- --bin-dir /usr/bin
 
 # If the version is "latest", use the guide to boostrap
-if [ "$PANTS_VERSION" = "latest" ]; then
-    su ${USERNAME} -c "echo Y | pants --version"
-    rm pants.toml
+if [ "$PANTS_VERSION" != "none" ]; then
+    mkdir -p tmp/
+    chown -hR ${_REMOTE_USER}:${_REMOTE_USER} tmp/
+    su ${USERNAME} -c "cd tmp && echo Y | pants --version"
+    rm -rf tmp/
 fi
