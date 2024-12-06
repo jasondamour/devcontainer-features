@@ -1,9 +1,23 @@
 {
     "install_pants_as_nonroot_user": {
         "image": "mcr.microsoft.com/devcontainers/base:ubuntu-22.04",
+        "remoteUser": "testing",
+        "features": {
+            "ghcr.io/nils-geistmann/devcontainers-features/create-remote-user:0": {},
+            "pantsbuild": {}
+        },
+        "overrideFeatureInstallOrder": [
+            "ghcr.io/nils-geistmann/devcontainers-features/create-remote-user",
+            "./pantsbuild"
+        ]
+    },
+    "install_specific_version": {
+        "image": "mcr.microsoft.com/devcontainers/base:ubuntu-22.04",
         "remoteUser": "vscode",
         "features": {
-            "pantsbuild": {}
+            "pantsbuild": {
+                "version": "2.22.0"
+            }
         }
     }
 }
